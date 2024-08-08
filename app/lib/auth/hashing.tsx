@@ -38,17 +38,20 @@ export const hashPassword = async (
   return `${saltHex}:${hashHex}`;
 };
 
-export async function verifyPassword(
-  storedHash: string,
-  passwordAttempt: string
-): Promise<boolean> {
+export async function verifyPassword({
+  password,
+  storedHash,
+}: {
+  password: string;
+  storedHash: string;
+}): Promise<boolean> {
   const [saltHex, originalHash] = storedHash.split(":");
   const matchResult = saltHex.match(/.{1,2}/g);
   if (!matchResult) {
     throw new Error("Invalid salt format");
   }
   const salt = new Uint8Array(matchResult.map((byte) => parseInt(byte, 16)));
-  const attemptHashWithSalt = await hashPassword(passwordAttempt, salt);
+  const attemptHashWithSalt = await hashPassword(password, salt);
   const [, attemptHash] = attemptHashWithSalt.split(":");
   return attemptHash === originalHash;
 }
