@@ -12,9 +12,12 @@
     "typecheck": "tsc",
     "typegen": "wrangler types",
     "preview": "pnpm run build && wrangler pages dev",
-    "cf-typegen": "wrangler types"
+    "cf-typegen": "wrangler types",
+    "drizzle-kit:dev": "drizzle-kit",
+    "drizzle-kit:production": "cross-env NODE_ENV=production drizzle-kit"
   },
   "dependencies": {
+    "@libsql/client": "^0.8.1",
     "@remix-run/cloudflare": "^2.11.1",
     "@remix-run/cloudflare-pages": "^2.11.1",
     "@remix-run/react": "^2.11.1",
@@ -23,6 +26,7 @@
     "babel-plugin-react-compiler": "0.0.0-experimental-334f00b-20240725",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "drizzle-orm": "^0.32.2",
     "eslint-plugin-react-compiler": "0.0.0-experimental-9ed098e-20240725",
     "isbot": "^4.4.0",
     "lucide-react": "^0.424.0",
@@ -41,6 +45,8 @@
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "autoprefixer": "^10.4.20",
+    "cross-env": "^7.0.3",
+    "drizzle-kit": "^0.23.2",
     "eslint": "^8.57.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",

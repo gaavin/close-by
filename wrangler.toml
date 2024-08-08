@@ -83,3 +83,9 @@ pages_build_output_dir = "./build/client"
 # [[env.production.kv_namespaces]]
 # binding = "MY_KV_NAMESPACE"
 # id = "<PRODUCTION_NAMESPACE_ID>"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "close-by"
+database_id = "a723fa5b-6dd3-4bab-8f2e-f7a10c47312b"
+migrations_dir = "drizzle"

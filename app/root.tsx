@@ -6,6 +6,13 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import "~/tailwind.css";
+import { LoaderFunctionArgs, json } from "@remix-run/cloudflare";
+
+export async function loader({ context }: LoaderFunctionArgs) {
+  const { drizzle } = context;
+  console.log(await drizzle.query.users.findMany());
+  return json({});
+}
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (

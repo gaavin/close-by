@@ -2,6 +2,7 @@ import {
   vitePlugin as remix,
   cloudflareDevProxyVitePlugin as remixCloudflareDevProxy,
 } from "@remix-run/dev";
+import { getLoadContext } from "./load-context";
 import { defineConfig } from "vite";
 import babel from "vite-plugin-babel";
 import tsconfigPaths from "vite-tsconfig-paths";
@@ -10,7 +11,9 @@ const ReactCompilerConfig = {}
 
 export default defineConfig({
   plugins: [
-    remixCloudflareDevProxy(),
+    remixCloudflareDevProxy({
+      getLoadContext,
+    }),
     remix({
       future: {
         v3_fetcherPersist: true,
