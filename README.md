@@ -36,11 +36,23 @@ pnpm run drizzle-kit:dev migrate
 pnpm run drizzle-kit:production migrate
 ```
 
-## ✅ Typegen
+## ✅ Typing
 
-You'll need to rerun typegen whenever you make changes to `wrangler.toml`.
+You'll need to run typegen if you make changes to `wrangler.toml`.
 ```sh
 pnpm run typegen
+```
+
+Run the Typescript compiler to check for errors if your language server is tripping balls:
+```sh
+pnpm run tsc
+```
+
+## ❤️ Code style
+
+Prettier!!!!!!!!!
+```sh
+pnpm run prettier:write
 ```
 
 ## 🚀 Deployment
