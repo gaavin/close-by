@@ -17,6 +17,11 @@ Afterwards, feel free to use drizzle-kit:
 pnpm run drizzle-kit:dev migrate
 ```
 
+Create a feature branch for any changes you're working on.
+```sh
+git checkout -b origin/🌱-my-dope-branch
+```
+
 😏 Run the dev server:
 
 ```sh
