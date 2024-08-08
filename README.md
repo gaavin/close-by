@@ -1,8 +1,8 @@
-# Yes by, she's close by, by
+# closeby.ca 👇
 
 ## Development
 
-Before running the dev server you'll need to need to populate the `.env` file with the correct environment variables.
+Before running the dev server you'll need to need to populate the `.env` file with Cloudflare credentials.
 The `.env.dist` file is a good starting point.
 ```sh
 cp .env.dist .env
