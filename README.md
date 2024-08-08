@@ -1,32 +1,44 @@
-# Welcome to Remix + Cloudflare!
-
-- 📖 [Remix docs](https://remix.run/docs)
-- 📖 [Remix Cloudflare docs](https://remix.run/guides/vite#cloudflare)
+# Yes by, she's close by, by
 
 ## Development
+
+Before running the dev server you'll need to need to populate the `.env` file with the correct environment variables.
+The `.env.dist` file is a good starting point.
+```sh
+cp .env.dist .env
+```
+
+You'll need to run the following command to apply migrations to your local copy of the database:
+```sh
+pnpm run migrate:dev
+```
+Afterwards you can use drizzle-kit but initially this is required to make wrangler happy
 
 Run the dev server:
 
 ```sh
-npm run dev
+pnpm run dev
 ```
 
-To run Wrangler:
+## Migrations
 
+Use drizzle-kit to generate migrations whenever you make changes to the database schema.
 ```sh
-npm run build
-npm run start
+pnpm run drizzle-kit:dev generate
+pnpm run drizzle-kit:dev migrate
+```
+
+Apply all migrations to production:
+```sh
+pnpm run migrations:production
 ```
 
 ## Typegen
 
-Generate types for your Cloudflare bindings in `wrangler.toml`:
-
-```sh
-npm run typegen
-```
-
 You will need to rerun typegen whenever you make changes to `wrangler.toml`.
+```sh
+pnpm run typegen
+```
 
 ## Deployment
 
@@ -42,6 +54,9 @@ Then, deploy your app to Cloudflare Pages:
 npm run deploy
 ```
 
-## Styling
+# Resources
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
+- 💿 [Remix](https://remix.run/docs)
+- ☁️ [Remix Cloudflare](https://remix.run/guides/vite#cloudflare)
+- 🗂️ [Drizzle](https://drizzle.team/docs)
+- 🖌️ [Shadcn](https://ui.shadcn.com/docs)
