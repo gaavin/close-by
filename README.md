@@ -31,7 +31,7 @@ pnpm run drizzle-kit:dev generate
 pnpm run drizzle-kit:dev migrate
 ```
 
-To apply migrations to production:
+👹 To apply migrations on production:
 ```sh
 pnpm run drizzle-kit:production migrate
 ```
@@ -50,7 +50,7 @@ Please for the love of God make sure the build is working before pushing to prod
 npm run preview
 ```
 
-Then, deploy closeby to Cloudflare Pages:
+Then, deploy closeby.ca to Cloudflare Pages:
 
 ```sh
 npm run deploy
