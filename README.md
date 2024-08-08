@@ -8,11 +8,13 @@ The `.env.dist` file is a good starting point.
 cp .env.dist .env
 ```
 
+
 You'll need to run the following command to apply migrations to your local copy of the database:
 ```sh
 pnpm run migrate:dev
 ```
 Afterwards you can use drizzle-kit but initially this is required to make wrangler happy
+
 
 Run the dev server:
 
@@ -28,6 +30,7 @@ pnpm run drizzle-kit:dev generate
 pnpm run drizzle-kit:dev migrate
 ```
 
+
 Apply all migrations to production:
 ```sh
 pnpm run migrations:production
@@ -40,6 +43,7 @@ You will need to rerun typegen whenever you make changes to `wrangler.toml`.
 pnpm run typegen
 ```
 
+
 ## Deployment
 
 First, build your app for production:
@@ -48,11 +52,13 @@ First, build your app for production:
 npm run build
 ```
 
+
 Then, deploy your app to Cloudflare Pages:
 
 ```sh
 npm run deploy
 ```
+
 
 # Resources
 
