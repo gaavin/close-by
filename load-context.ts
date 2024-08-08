@@ -1,6 +1,7 @@
 import { AppLoadContext } from "@remix-run/cloudflare";
 import { DrizzleD1Database, drizzle } from "drizzle-orm/d1";
 import { type PlatformProxy } from "wrangler";
+
 import * as schema from "./app/lib/schema";
 
 type Cloudflare = Omit<PlatformProxy<Env>, "dispose">;
@@ -18,9 +19,7 @@ type GetLoadContext = (args: {
 }) => AppLoadContext;
 
 // Shared implementation compatible with Vite, Wrangler, and Cloudflare Pages
-export const getLoadContext: GetLoadContext = ({
-  context,
-}) => {
+export const getLoadContext: GetLoadContext = ({ context }) => {
   return {
     ...context,
     drizzle: drizzle(context.cloudflare.env.DB, {

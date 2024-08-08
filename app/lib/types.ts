@@ -1,7 +1,7 @@
 export type BackendResponseSuccess<T extends object> = {
   success: true;
-    message?: string;
-    data?: T;
+  message?: string;
+  data?: T;
 };
 
 export type BackendResponseError = {

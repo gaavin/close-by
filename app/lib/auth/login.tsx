@@ -1,7 +1,9 @@
 import { eq } from "drizzle-orm";
 import type { DrizzleD1Database } from "drizzle-orm/d1";
-import type { BackendResponseError, BackendResponseSuccess } from "~/lib/types";
+
 import * as schema from "~/lib/schema";
+import type { BackendResponseError, BackendResponseSuccess } from "~/lib/types";
+
 import { verifyPassword } from "./hashing";
 
 export const login = async ({

@@ -2,12 +2,13 @@ import {
   vitePlugin as remix,
   cloudflareDevProxyVitePlugin as remixCloudflareDevProxy,
 } from "@remix-run/dev";
-import { getLoadContext } from "./load-context";
 import { defineConfig } from "vite";
 import babel from "vite-plugin-babel";
 import tsconfigPaths from "vite-tsconfig-paths";
 
-const ReactCompilerConfig = {}
+import { getLoadContext } from "./load-context";
+
+const ReactCompilerConfig = {};
 
 export default defineConfig({
   plugins: [
@@ -25,9 +26,7 @@ export default defineConfig({
       filter: /\.[jt]sx?$/,
       babelConfig: {
         presets: ["@babel/preset-typescript"], // if you use TypeScript
-        plugins: [
-          ["babel-plugin-react-compiler", ReactCompilerConfig],
-        ],
+        plugins: [["babel-plugin-react-compiler", ReactCompilerConfig]],
       },
     }),
     tsconfigPaths(),

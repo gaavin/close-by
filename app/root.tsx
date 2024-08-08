@@ -1,3 +1,4 @@
+import { LoaderFunctionArgs, json } from "@remix-run/cloudflare";
 import {
   Links,
   Meta,
@@ -5,8 +6,8 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+
 import "~/tailwind.css";
-import { LoaderFunctionArgs, json } from "@remix-run/cloudflare";
 
 export async function loader({ context }: LoaderFunctionArgs) {
   const { drizzle } = context;
