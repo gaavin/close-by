@@ -57,7 +57,7 @@ pnpm run tsc
 
 Prettier!!!!!!!!!
 ```sh
-pnpm run prettier:write
+pnpm run prettier
 ```
 
 ## 🚀 Deployment
