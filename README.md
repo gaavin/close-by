@@ -3,7 +3,7 @@
 ## 🛠️ Development
 
 Before running the dev server you'll need to need to populate the `.env` file with Cloudflare credentials.
-The `.env.dist` file is a good starting point.
+The `.env.dist` file is a good starting point (just ask).
 ```sh
 cp .env.dist .env
 ```
