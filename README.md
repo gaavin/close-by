@@ -43,9 +43,9 @@ pnpm run drizzle-kit:production migrate
 
 ## ✅ Typing
 
-You'll need to run typegen if you make changes to `wrangler.toml`.
+You'll need to run cf-typegen if you make changes to `wrangler.toml`.
 ```sh
-pnpm run typegen
+pnpm run cf-typegen
 ```
 
 Run the Typescript compiler to check for errors if your language server is tripping balls:
