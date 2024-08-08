@@ -64,13 +64,13 @@ pnpm run prettier:write
 
 Please for the love of God make sure the build is working before pushing to production
 ```sh
-npm run preview
+pnpm run preview
 ```
 
 Then, deploy closeby.ca to Cloudflare Pages:
 
 ```sh
-npm run deploy
+pnpm run deploy
 ```
 
 
