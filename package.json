@@ -16,7 +16,9 @@
     "prettier": "prettier --write ./",
     "prettier:check": "prettier --check ./",
     "drizzle-kit:dev": "drizzle-kit",
-    "drizzle-kit:production": "cross-env NODE_ENV=production drizzle-kit"
+    "drizzle-kit:production": "cross-env NODE_ENV=production drizzle-kit",
+    "migrations:dev": "wrangler d1 migrations apply close-by --local",
+    "migrations:production": "cross-env NODE_ENV=production drizzle-kit migrate"
   },
   "dependencies": {
     "@libsql/client": "^0.8.1",
@@ -61,7 +63,7 @@
     "typescript": "^5.5.4",
     "vite": "^5.4.0",
     "vite-tsconfig-paths": "^4.3.2",
-    "wrangler": "3.57.1"
+    "wrangler": "3.69.1"
   },
   "overrides": {
     "@types/react": "npm:types-react@rc",

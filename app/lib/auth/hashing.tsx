@@ -38,13 +38,13 @@ export const hashPassword = async (
   return `${saltHex}:${hashHex}`;
 };
 
-export async function verifyPassword({
+export const verifyPassword = async ({
   password,
   storedHash,
 }: {
   password: string;
   storedHash: string;
-}): Promise<boolean> {
+}) => {
   const [saltHex, originalHash] = storedHash.split(":");
   const matchResult = saltHex.match(/.{1,2}/g);
   if (!matchResult) {
@@ -54,4 +54,4 @@ export async function verifyPassword({
   const attemptHashWithSalt = await hashPassword(password, salt);
   const [, attemptHash] = attemptHashWithSalt.split(":");
   return attemptHash === originalHash;
-}
+};

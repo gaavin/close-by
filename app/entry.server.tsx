@@ -8,7 +8,7 @@ import { RemixServer } from "@remix-run/react";
 import { isbot } from "isbot";
 import { renderToReadableStream } from "react-dom/server";
 
-export default async function handleRequest(
+const handleRequest = async (
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
@@ -17,7 +17,7 @@ export default async function handleRequest(
   // free to delete this parameter in your app if you're not using it!
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   loadContext: AppLoadContext
-) {
+) => {
   const body = await renderToReadableStream(
     <RemixServer context={remixContext} url={request.url} />,
     {
@@ -39,4 +39,6 @@ export default async function handleRequest(
     headers: responseHeaders,
     status: responseStatusCode,
   });
-}
+};
+
+export default handleRequest;

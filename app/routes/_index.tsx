@@ -10,7 +10,7 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export default function Index() {
+const Index = () => {
   return (
     <div className="font-sans p-4">
       <h1 className="text-3xl">Welcome to Remix on Cloudflare</h1>
@@ -38,4 +38,6 @@ export default function Index() {
       </ul>
     </div>
   );
-}
+};
+
+export default Index;

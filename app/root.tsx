@@ -1,21 +1,29 @@
-import { LoaderFunctionArgs, json } from "@remix-run/cloudflare";
+import {
+  LoaderFunction,
+  LoaderFunctionArgs,
+  defer,
+} from "@remix-run/cloudflare";
 import {
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from "@remix-run/react";
 
 import "~/tailwind.css";
 
-export async function loader({ context }: LoaderFunctionArgs) {
+export const loader = async ({ context }: LoaderFunctionArgs) => {
   const { drizzle } = context;
-  console.log(await drizzle.query.users.findMany());
-  return json({});
-}
+  return defer({
+    products: drizzle.query.products.findMany,
+    hi: "adfias",
+  });
+};
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export const Layout = ({ children }: { children: React.ReactNode }) => {
+  const loaderData = useLoaderData<typeof loader>();
   return (
     <html lang="en">
       <head>
@@ -31,8 +39,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </body>
     </html>
   );
-}
+};
 
-export default function App() {
+const App = () => {
   return <Outlet />;
-}
+};
+
+export default App;
