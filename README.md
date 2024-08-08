@@ -1,6 +1,6 @@
 # closeby.ca 👇
 
-## Development
+## 🛠️ Development
 
 Before running the dev server you'll need to need to populate the `.env` file with Cloudflare credentials.
 The `.env.dist` file is a good starting point.
@@ -8,21 +8,22 @@ The `.env.dist` file is a good starting point.
 cp .env.dist .env
 ```
 
-
-You'll need to run the following command to apply migrations to your local copy of the database:
+Initially, you'll need to run this script to apply migrations to your local copy of the database:
 ```sh
 pnpm run migrate:dev
 ```
-Afterwards you can use drizzle-kit but initially this is required to make wrangler happy
+Afterwards, feel free to use drizzle-kit:
+```sh
+pnpm run drizzle-kit:dev migrate
+```
 
-
-Run the dev server:
+😏 Run the dev server:
 
 ```sh
 pnpm run dev
 ```
 
-## Migrations
+## 🗂️ Migrations
 
 Use drizzle-kit to generate migrations whenever you make changes to the database schema.
 ```sh
@@ -30,30 +31,26 @@ pnpm run drizzle-kit:dev generate
 pnpm run drizzle-kit:dev migrate
 ```
 
-
-Apply all migrations to production:
+To apply migrations to production:
 ```sh
-pnpm run migrations:production
+pnpm run drizzle-kit:production migrate
 ```
 
-## Typegen
+## ✅ Typegen
 
-You will need to rerun typegen whenever you make changes to `wrangler.toml`.
+You'll need to rerun typegen whenever you make changes to `wrangler.toml`.
 ```sh
 pnpm run typegen
 ```
 
+## 🚀 Deployment
 
-## Deployment
-
-First, build your app for production:
-
+Please for the love of God make sure the build is working before pushing to production
 ```sh
-npm run build
+npm run preview
 ```
 
-
-Then, deploy your app to Cloudflare Pages:
+Then, deploy closeby to Cloudflare Pages:
 
 ```sh
 npm run deploy
