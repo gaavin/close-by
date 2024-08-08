@@ -17,8 +17,8 @@
     "prettier:check": "prettier --check ./",
     "drizzle-kit:dev": "drizzle-kit",
     "drizzle-kit:production": "cross-env NODE_ENV=production drizzle-kit",
-    "migrations:dev": "wrangler d1 migrations apply close-by --local",
-    "migrations:production": "cross-env NODE_ENV=production drizzle-kit migrate"
+    "migrate:dev": "wrangler d1 migrations apply close-by --local",
+    "migrate:production": "cross-env NODE_ENV=production drizzle-kit migrate"
   },
   "dependencies": {
     "@libsql/client": "^0.8.1",
