@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@libsql/client": "^0.8.1",
+    "@radix-ui/react-scroll-area": "^1.1.0",
     "@remix-run/cloudflare": "^2.11.1",
     "@remix-run/cloudflare-pages": "^2.11.1",
     "@remix-run/react": "^2.11.1",

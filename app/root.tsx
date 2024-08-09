@@ -1,6 +1,7 @@
 import {
   LoaderFunction,
   LoaderFunctionArgs,
+  TypedDeferredData,
   defer,
 } from "@remix-run/cloudflare";
 import {
@@ -9,21 +10,11 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData,
 } from "@remix-run/react";
 
 import "~/tailwind.css";
 
-export const loader = async ({ context }: LoaderFunctionArgs) => {
-  const { drizzle } = context;
-  return defer({
-    products: drizzle.query.products.findMany,
-    hi: "adfias",
-  });
-};
-
 export const Layout = ({ children }: { children: React.ReactNode }) => {
-  const loaderData = useLoaderData<typeof loader>();
   return (
     <html lang="en">
       <head>
