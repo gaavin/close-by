@@ -11,15 +11,21 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
+import {
+  PreventFlashOnWrongTheme,
+  ThemeProvider,
+  useTheme,
+} from "remix-themes";
+import clsx from "clsx";
 
 import "~/tailwind.css";
+import { themeSessionResolver } from "./sessions.server";
 
 export const loader = async ({ context }: LoaderFunctionArgs) => {
-  const { drizzle } = context;
-  return defer({
-    products: drizzle.query.products.findMany,
-    hi: "adfias",
-  });
+  const { getTheme } = await themeSessionResolver(context);
+  return {
+    theme: getTheme(),
+  };
 };
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {

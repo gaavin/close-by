@@ -36,6 +36,7 @@
     "lucide-react": "^0.424.0",
     "react": "19.0.0-rc-e948a5ac-20240807",
     "react-dom": "19.0.0-rc-e948a5ac-20240807",
+    "remix-themes": "^1.5.0",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "vite-plugin-babel": "^1.2.0"
