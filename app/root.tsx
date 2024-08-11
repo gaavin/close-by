@@ -1,10 +1,4 @@
 import {
-  LoaderFunction,
-  LoaderFunctionArgs,
-  TypedDeferredData,
-  defer,
-} from "@remix-run/cloudflare";
-import {
   Links,
   Meta,
   Outlet,
@@ -32,8 +26,6 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const App = () => {
+export default function App() {
   return <Outlet />;
-};
-
-export default App;
+}

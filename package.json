@@ -18,7 +18,8 @@
     "drizzle-kit:dev": "drizzle-kit",
     "drizzle-kit:production": "cross-env NODE_ENV=production drizzle-kit",
     "migrate:dev": "wrangler d1 migrations apply close-by --local",
-    "migrate:production": "cross-env NODE_ENV=production drizzle-kit migrate"
+    "migrate:production": "wrangler d1 migrations apply close-by --local",
+    "broken-atm:migrate:production": "cross-env NODE_ENV=production drizzle-kit migrate"
   },
   "dependencies": {
     "@libsql/client": "^0.8.1",
@@ -39,6 +40,7 @@
     "react-dom": "19.0.0-rc-e948a5ac-20240807",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
+    "tiny-invariant": "^1.3.3",
     "vite-plugin-babel": "^1.2.0"
   },
   "devDependencies": {

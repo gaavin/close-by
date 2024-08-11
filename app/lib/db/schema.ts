@@ -6,6 +6,8 @@ import {
   uniqueIndex,
 } from "drizzle-orm/sqlite-core";
 
+export * as schema from "./schema";
+
 export const users = sqliteTable(
   "users",
   {

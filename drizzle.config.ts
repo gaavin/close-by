@@ -3,7 +3,6 @@ import { defineConfig } from "drizzle-kit";
 import fs from "fs";
 import path from "path";
 
-
 const getLocalD1DB = () => {
   try {
     const basePath = path.resolve(".wrangler");
@@ -11,8 +10,7 @@ const getLocalD1DB = () => {
       .readdirSync(basePath, { encoding: "utf-8", recursive: true })
       .find((f) => f.endsWith(".sqlite"));
 
-      if (!dbFile) {
-        
+    if (!dbFile) {
       throw new Error(`.sqlite file not found in ${basePath}`);
     }
 
@@ -21,11 +19,11 @@ const getLocalD1DB = () => {
   } catch (err) {
     console.log(`Error  ${err}`);
   }
-}
+};
 
 const drizzleConfig = defineConfig({
   dialect: "sqlite",
-  schema: "./app/lib/schema.ts",
+  schema: "./app/lib/db/schema.ts",
   out: "./drizzle",
   ...(process.env.NODE_ENV === "production"
     ? {

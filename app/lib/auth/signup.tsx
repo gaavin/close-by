@@ -1,7 +1,7 @@
 import { DrizzleD1Database } from "drizzle-orm/d1";
 
 import { hashPassword } from "~/lib/auth/hashing";
-import * as schema from "~/lib/schema";
+import { schema } from "~/lib/db/schema";
 
 export const signup = async ({
   drizzle,
@@ -11,13 +11,11 @@ export const signup = async ({
   drizzle: DrizzleD1Database<typeof schema>;
   email: string;
   password: string;
-}) => {
-  const hashedPassword = await hashPassword(password);
-  return await drizzle
+}) =>
+  drizzle
     .insert(schema.users)
     .values({
       email,
-      passwordHash: hashedPassword,
+      passwordHash: await hashPassword(password),
     })
     .returning();
-};

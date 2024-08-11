@@ -1,15 +1,16 @@
-import { AppLoadContext } from "@remix-run/cloudflare";
-import { DrizzleD1Database, drizzle } from "drizzle-orm/d1";
-import { type PlatformProxy } from "wrangler";
+import type { AppLoadContext } from "@remix-run/cloudflare";
+import { drizzle } from "drizzle-orm/d1";
+import type { PlatformProxy } from "wrangler";
 
-import * as schema from "./app/lib/schema";
+import { queryFactory } from "./app/lib/db/queries";
+import { schema } from "./app/lib/db/schema";
 
 type Cloudflare = Omit<PlatformProxy<Env>, "dispose">;
 
 declare module "@remix-run/cloudflare" {
   interface AppLoadContext {
     cloudflare: Cloudflare;
-    drizzle: DrizzleD1Database<typeof schema>;
+    queries: ReturnType<typeof queryFactory>;
   }
 }
 
@@ -20,10 +21,13 @@ type GetLoadContext = (args: {
 
 // Shared implementation compatible with Vite, Wrangler, and Cloudflare Pages
 export const getLoadContext: GetLoadContext = ({ context }) => {
+  const db = drizzle(context.cloudflare.env.DB, {
+    schema,
+  });
+
+  const queries = queryFactory(db);
   return {
     ...context,
-    drizzle: drizzle(context.cloudflare.env.DB, {
-      schema,
-    }),
+    queries,
   };
 };
