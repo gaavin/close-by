@@ -17,13 +17,14 @@ export const queryFactory = (request: Request, db: Database) => {
   const page = Number(searchParams.get("page")) || undefined;
   const limit = Number(searchParams.get("limit")) || undefined;
 
-  const paginationOptions =
+  const paginationOptions = (
     page && limit
       ? {
           page,
           limit,
         }
-      : (undefined satisfies PaginationOptions | undefined);
+      : undefined
+  ) satisfies PaginationOptions | undefined;
 
   return {
     getUsers: withPagination(
