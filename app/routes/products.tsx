@@ -1,13 +1,7 @@
-import {
-  LoaderFunctionArgs,
-  type MetaFunction,
-  defer,
-} from "@remix-run/cloudflare";
+import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/cloudflare";
+import { defer } from "@remix-run/cloudflare";
 import { Await, useLoaderData } from "@remix-run/react";
 import { Suspense } from "react";
-
-import { ScrollArea } from "~/components/ui/scroll-area";
-import { withPagination } from "~/lib/db/queries";
 
 export const meta: MetaFunction = () => {
   return [
@@ -23,32 +17,32 @@ export const meta: MetaFunction = () => {
 // We intentionally avoid an arrow function here, since types seem to be inferred incorrectly in useLoaderData otherwise
 export function loader({ context }: LoaderFunctionArgs) {
   const { queries } = context;
-
-  const products = withPagination(queries.products, {
-    page: 1,
-    pageSize: 5,
-  }).all();
+  const { getProducts } = queries;
 
   // 🚀 Here we return our database query promises which can be resolved on the frontend
-  // We can use a suspense boundary or use() to resolve the promises
+  // Use a suspense boundary or use() resolve the data
   // https://remix.run/docs/en/main/guides/streaming
-  return defer({ products });
+  return defer({ getProducts });
 }
 
 export default function ProductsRoute() {
-  const { products } = useLoaderData<typeof loader>();
+  const { getProducts } = useLoaderData<typeof loader>();
 
   return (
-    <ScrollArea className="flex flex-col gap-[5rem]">
+    <div className="p-5 flex flex-row gap-10 w-min whitespace-nowrap rounded-md border">
       <Suspense>
-        <Await resolve={products}>
-          {(products) => {
-            return products.map((product) => {
-              return <div key={product.id}>{product.name}</div>;
-            });
-          }}
+        <Await resolve={getProducts}>
+          {(products) =>
+            products.map((product) => (
+              <div key={product.id} className="flex flex-col gap-1">
+                <div className="text-xl">{product.name}</div>
+                <div className="text-md">{product.description}</div>
+                <div className="text-md font-bold">${product.price}</div>
+              </div>
+            ))
+          }
         </Await>
       </Suspense>
-    </ScrollArea>
+    </div>
   );
 }

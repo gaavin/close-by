@@ -20,12 +20,12 @@ type GetLoadContext = (args: {
 }) => AppLoadContext;
 
 // Shared implementation compatible with Vite, Wrangler, and Cloudflare Pages
-export const getLoadContext: GetLoadContext = ({ context }) => {
+export const getLoadContext: GetLoadContext = ({ context, request }) => {
   const db = drizzle(context.cloudflare.env.DB, {
     schema,
   });
 
-  const queries = queryFactory(db);
+  const queries = queryFactory(request, db);
   return {
     ...context,
     queries,

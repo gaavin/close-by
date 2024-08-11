@@ -6,5 +6,5 @@ export type Database = DrizzleD1Database<typeof schema>;
 
 export type PaginationOptions = {
   page: number;
-  pageSize: number;
+  limit: number;
 };
