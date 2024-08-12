@@ -17,7 +17,7 @@ const QueryContext = createContext<Queries | undefined>(undefined);
 
 export const useQueries = () => {
   const queries = useContext(QueryContext);
-  invariant(queries, "useQuery must be used within a QueryContext");
+  invariant(queries, "useQueries must be used within a QueryContext");
   return queries;
 };
 
