@@ -6,19 +6,19 @@
 		"#/*": "./src/*"
 	},
 	"scripts": {
-		"dev": "pnpm run migrations:local && vite dev --port 3000",
-		"generate-routes": "tsr generate",
-		"build": "vite build",
-		"preview": "pnpm run build && vite preview",
-		"test": "vitest run",
-		"format": "biome format",
-		"lint": "biome lint",
-		"check": "biome check",
-		"deploy": "pnpm run migrations:remote && pnpm run build && wrangler deploy",
 		"cf-typegen": "wrangler types",
 		"migrations:remote": "wrangler d1 migrations apply close-by --remote",
 		"migrations:local": "wrangler d1 migrations apply close-by --local",
-		"migrations:generate": "drizzle-kit generate"
+		"migrations:generate": "drizzle-kit generate",
+		"predev": "pnpm run cf-typegen && pnpm run migrations:local",
+		"dev": "vite dev --port 3000",
+		"generate-routes": "tsr generate",
+		"build": "vite build",
+		"preview": "pnpm run build && vite preview",
+		"format": "biome format",
+		"lint": "biome lint",
+		"check": "biome check",
+		"deploy": "pnpm run migrations:remote && pnpm run build && wrangler deploy"
 	},
 	"dependencies": {
 		"@cloudflare/vite-plugin": "^1.40",
@@ -41,8 +41,6 @@
 		"@rolldown/plugin-babel": "^0.2",
 		"@tanstack/devtools-vite": "^0.7",
 		"@tanstack/router-cli": "^1.167",
-		"@testing-library/dom": "^10.4",
-		"@testing-library/react": "^16.3",
 		"@types/node": "^25.9",
 		"@types/react": "^19.2",
 		"@types/react-dom": "^19.2",
@@ -50,10 +48,8 @@
 		"@vitejs/plugin-rsc": "^0.5",
 		"babel-plugin-react-compiler": "^1.0",
 		"drizzle-kit": "^0.31",
-		"jsdom": "^29.1",
 		"typescript": "^6.0",
 		"vite": "^8.0",
-		"vitest": "^4.1",
 		"wrangler": "^4.101"
 	}
 }
