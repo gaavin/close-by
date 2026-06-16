@@ -23,7 +23,6 @@ const getRootDocument = createServerFn().handler(async () => {
 });
 
 export const Route = createRootRoute({
-	loader: async () => getRootDocument(),
 	head: () => ({
 		meta: [
 			{
@@ -44,6 +43,7 @@ export const Route = createRootRoute({
 			},
 		],
 	}),
+	loader: async () => getRootDocument(),
 	shellComponent: RootDocument,
 });
 

@@ -2,12 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { renderServerComponent } from "@tanstack/react-start/rsc";
 
-function RscIntro() {
-	return <p>This paragraph was rendered as a React Server Component.</p>;
-}
-
 const getRscIntro = createServerFn().handler(async () => {
-	const Intro = await renderServerComponent(<RscIntro />);
+	const Intro = await renderServerComponent(
+		<p>This paragraph was rendered as a React Server Component.</p>,
+	);
 
 	return { Intro };
 });
