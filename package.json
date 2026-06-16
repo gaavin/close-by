@@ -15,10 +15,14 @@
 		"lint": "biome lint",
 		"check": "biome check",
 		"deploy": "pnpm run build && wrangler deploy",
-		"cf-typegen": "wrangler types"
+		"cf-typegen": "wrangler types",
+		"migrations:remote": "wrangler d1 migrations apply close-by --remote",
+		"migrations:local": "wrangler d1 migrations apply close-by --local",
+		"migrations:generate": "drizzle-kit generate"
 	},
 	"dependencies": {
 		"@cloudflare/vite-plugin": "^1.40",
+		"@paralleldrive/cuid2": "^3.3",
 		"@tailwindcss/vite": "^4.3",
 		"@tanstack/react-devtools": "^0.10",
 		"@tanstack/react-router": "^1.170",
@@ -26,6 +30,7 @@
 		"@tanstack/react-router-ssr-query": "^1.167",
 		"@tanstack/react-start": "^1.168",
 		"@tanstack/router-plugin": "^1.168",
+		"drizzle-orm": "^0.45",
 		"react": "^19.2",
 		"react-dom": "^19.2",
 		"tailwindcss": "^4.3",
@@ -34,7 +39,6 @@
 	"devDependencies": {
 		"@biomejs/biome": "^2.5",
 		"@rolldown/plugin-babel": "^0.2",
-		"@tailwindcss/typography": "^0.5",
 		"@tanstack/devtools-vite": "^0.7",
 		"@tanstack/router-cli": "^1.167",
 		"@testing-library/dom": "^10.4",
@@ -45,6 +49,7 @@
 		"@vitejs/plugin-react": "^6.0",
 		"@vitejs/plugin-rsc": "^0.5",
 		"babel-plugin-react-compiler": "^1.0",
+		"drizzle-kit": "^0.31",
 		"jsdom": "^29.1",
 		"typescript": "^6.0",
 		"vite": "^8.0",

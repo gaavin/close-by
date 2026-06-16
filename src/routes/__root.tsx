@@ -1,10 +1,29 @@
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import { createServerFn } from "@tanstack/react-start";
+import {
+	CompositeComponent,
+	createCompositeComponent,
+} from "@tanstack/react-start/rsc";
+import type { ReactNode } from "react";
+import styles from "@/styles.css?url";
 
-import styles from "../styles.css?url";
+const getRootDocument = createServerFn().handler(async () => {
+	const src = await createCompositeComponent(
+		(props: { children?: ReactNode; HeadContent: () => ReactNode }) => (
+			<html lang="en">
+				<head>{props.HeadContent()}</head>
+				<body>{props.children}</body>
+			</html>
+		),
+	);
+
+	return { src };
+});
 
 export const Route = createRootRoute({
+	loader: async () => getRootDocument(),
 	head: () => ({
 		meta: [
 			{
@@ -29,26 +48,23 @@ export const Route = createRootRoute({
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+	const { src } = Route.useLoaderData();
+
 	return (
-		<html lang="en">
-			<head>
-				<HeadContent />
-			</head>
-			<body>
-				{children}
-				<TanStackDevtools
-					config={{
-						position: "bottom-right",
-					}}
-					plugins={[
-						{
-							name: "Tanstack Router",
-							render: <TanStackRouterDevtoolsPanel />,
-						},
-					]}
-				/>
-				<Scripts />
-			</body>
-		</html>
+		<CompositeComponent src={src} HeadContent={() => <HeadContent />}>
+			{children}
+			<TanStackDevtools
+				config={{
+					position: "bottom-right",
+				}}
+				plugins={[
+					{
+						name: "Tanstack Router",
+						render: <TanStackRouterDevtoolsPanel />,
+					},
+				]}
+			/>
+			<Scripts />
+		</CompositeComponent>
 	);
 }

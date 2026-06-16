@@ -12,6 +12,10 @@
 			"**/.vscode/**/*",
 			"**/index.html",
 			"**/vite.config.ts",
+			"**/drizzle.config.ts",
+			"**/package.json",
+			"**/tsconfig.json",
+			"**/wrangler.jsonc",
 			"!**/src/routeTree.gen.ts",
 			"!**/src/styles.css"
 		]

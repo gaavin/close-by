@@ -14,10 +14,10 @@ const getRscIntro = createServerFn().handler(async () => {
 
 export const Route = createFileRoute("/")({
 	loader: async () => getRscIntro(),
-	component: App,
+	component: Index,
 });
 
-function App() {
+function Index() {
 	const { Intro } = Route.useLoaderData();
 
 	return (
