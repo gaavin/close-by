@@ -14,7 +14,7 @@
 		"format": "biome format",
 		"lint": "biome lint",
 		"check": "biome check",
-		"deploy": "pnpm run build && wrangler deploy",
+		"deploy": "pnpm run migrations:remote && pnpm run build && wrangler deploy",
 		"cf-typegen": "wrangler types",
 		"migrations:remote": "wrangler d1 migrations apply close-by --remote",
 		"migrations:local": "wrangler d1 migrations apply close-by --local",
@@ -55,12 +55,5 @@
 		"vite": "^8.0",
 		"vitest": "^4.1",
 		"wrangler": "^4.100"
-	},
-	"pnpm": {
-		"onlyBuiltDependencies": [
-			"esbuild",
-			"workerd",
-			"sharp"
-		]
 	}
 }
