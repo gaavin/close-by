@@ -9,9 +9,10 @@
 		"ignoreUnknown": false,
 		"includes": [
 			"**/src/**/*",
+			"**/plugins/**/*",
 			"**/.vscode/**/*",
 			"**/index.html",
-			"**/vite.config.ts",
+			"**/rsbuild.config.ts",
 			"**/drizzle.config.ts",
 			"**/package.json",
 			"**/tsconfig.json",
