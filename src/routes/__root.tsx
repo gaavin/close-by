@@ -1,26 +1,12 @@
 import { TanStackDevtools } from "@tanstack/react-devtools";
-import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
-import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
-import { createServerFn } from "@tanstack/react-start";
 import {
-	CompositeComponent,
-	createCompositeComponent,
-} from "@tanstack/react-start/rsc";
+	createRootRoute,
+	HeadContent,
+	Scripts,
+} from "@tanstack/react-router";
+import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import type { ReactNode } from "react";
 import styles from "@/styles.css?url";
-
-const getRootDocument = createServerFn().handler(async () => {
-	const src = await createCompositeComponent(
-		(props: { children?: ReactNode; HeadContent: () => ReactNode }) => (
-			<html lang="en">
-				<head>{props.HeadContent()}</head>
-				<body>{props.children}</body>
-			</html>
-		),
-	);
-
-	return { src };
-});
 
 export const Route = createRootRoute({
 	head: () => ({
@@ -43,28 +29,30 @@ export const Route = createRootRoute({
 			},
 		],
 	}),
-	loader: async () => getRootDocument(),
 	shellComponent: RootDocument,
 });
 
-function RootDocument({ children }: { children: React.ReactNode }) {
-	const { src } = Route.useLoaderData();
-
+function RootDocument({ children }: { children: ReactNode }) {
 	return (
-		<CompositeComponent src={src} HeadContent={() => <HeadContent />}>
-			{children}
-			<TanStackDevtools
-				config={{
-					position: "bottom-right",
-				}}
-				plugins={[
-					{
-						name: "Tanstack Router",
-						render: <TanStackRouterDevtoolsPanel />,
-					},
-				]}
-			/>
-			<Scripts />
-		</CompositeComponent>
+		<html lang="en">
+			<head>
+				<HeadContent />
+			</head>
+			<body>
+				{children}
+				<TanStackDevtools
+					config={{
+						position: "bottom-right",
+					}}
+					plugins={[
+						{
+							name: "Tanstack Router",
+							render: <TanStackRouterDevtoolsPanel />,
+						},
+					]}
+				/>
+				<Scripts />
+			</body>
+		</html>
 	);
 }

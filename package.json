@@ -11,7 +11,7 @@
 		"migrations:remote": "wrangler d1 migrations apply close-by --remote",
 		"migrations:local": "wrangler d1 migrations apply close-by --local",
 		"migrations:generate": "drizzle-kit generate",
-		"predev": "pnpm run cf:typegen &&pnpm run routes:generate && pnpm run migrations:local",
+		"predev": "pnpm run cf:typegen && pnpm run routes:generate && pnpm run migrations:local",
 		"dev": "rsbuild",
 		"routes:generate": "tsr generate",
 		"build": "rsbuild build",
@@ -32,7 +32,7 @@
 		"drizzle-orm": "^0.45.2",
 		"react": "^19.2.7",
 		"react-dom": "^19.2.7",
-		"react-server-dom-rspack": "0.0.2",
+		"react-server-dom-rspack": "^0.0.2",
 		"tailwindcss": "^4.3.1",
 		"zod": "^4.4.3"
 	},
@@ -47,7 +47,7 @@
 		"@types/react-dom": "^19.2.3",
 		"babel-plugin-react-compiler": "^1.0.0",
 		"drizzle-kit": "^0.31.10",
-		"miniflare": "4.20260623.0",
+		"miniflare": "^4.20260623.0",
 		"npm-check-updates": "^22.2.7",
 		"typescript": "^6.0.3",
 		"wrangler": "^4.104.0"

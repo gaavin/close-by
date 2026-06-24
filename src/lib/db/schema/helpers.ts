@@ -8,9 +8,10 @@ export const defaults = {
 		.primaryKey()
 		.notNull(),
 	createdAt: integer("created_at", { mode: "timestamp" })
-		.default(sql`(CURRENT_TIMESTAMP)`)
+		.default(sql`(unixepoch())`)
 		.notNull(),
 	updatedAt: integer("updated_at", { mode: "timestamp" })
-		.default(sql`(CURRENT_TIMESTAMP)`)
+		.default(sql`(unixepoch())`)
+		.$onUpdate(() => new Date())
 		.notNull(),
 };
